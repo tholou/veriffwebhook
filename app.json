@@ -1,0 +1,12 @@
+{
+  "name": "veriff-webhook",
+  "description": "Webhook for Veriff",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tholou/veriffwebhook.git"
+  },
+  "keywords": [
+    "veriff",
+    "webhook"
+  ]
+}

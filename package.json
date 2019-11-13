@@ -1,0 +1,28 @@
+{
+  "name": "veriffwebhook",
+  "version": "1.0.0",
+  "description": "A webhook for Veriff",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tholou/veriffwebhook.git"
+  },
+  "keywords": [
+    "veriff",
+    "webhook"
+  ],
+  "author": "Toluwalade Eyinade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tholou/veriffwebhook/issues"
+  },
+  "homepage": "https://github.com/tholou/veriffwebhook#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
