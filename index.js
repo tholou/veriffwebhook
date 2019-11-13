@@ -86,5 +86,35 @@ app.post('/test/hook', (req, res) => {
     res.json(data);
 });
 
+app.post('/test/notification', (req, res) => {
+    const signature = req.get('x-signature');
+    const secret = API_SECRET;
+    const payload = req.body;
+
+
+    console.log('Received a webhook');
+    console.log('Generate signature:', generateSignature(payload, API_SECRET));
+    console.log('Validated signature:', isSignatureValid({ signature, secret, payload }));
+    // check if verification token is correct
+    // if (req.query.token !== token) {
+    //     return res.sendStatus(401);
+    // }
+
+    // print request body
+    console.log(req.body);
+
+    // return a text response
+    const data = {
+        responses: [
+            {
+                type: 'text',
+                elements: ['Hi', 'Hello']
+            }
+        ]
+    };
+
+    res.json(data);
+});
+
 var port = process.env.PORT || 5000;
 app.listen(port , () => console.log('[Veriff] Webhook is listening on port: ' + port));
