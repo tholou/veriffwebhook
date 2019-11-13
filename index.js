@@ -37,4 +37,4 @@ app.post('/', (req, res) => {
     res.json(data);
 });
 
-app.listen(3000, () => console.log('[Veriff] Webhook is listening'));
+app.listen((process.env.PORT || 5000), () => console.log('[Veriff] Webhook is listening'));
