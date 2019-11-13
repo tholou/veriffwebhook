@@ -11,6 +11,9 @@ const app = express().use(bodyParser.json()); // creates http server
 const API_TOKEN = process.env.API_TOKEN;
 const API_SECRET = process.env.API_SECRET;
 
+if (!API_TOKEN) throw('API_TOKEN environment variable is required');
+if (!API_SECRET) throw('API_SECRET environment variable is required');
+
 // app.get('/', (req, res) => {
 //     // check if verification token is correct
 //     // if (req.query.token !== token) {
