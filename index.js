@@ -55,8 +55,11 @@ app.post('/test/hook', (req, res) => {
     } else {
         res.status(200).json({
             status_code: 200,
-            data: {
-                verificationId: verificationId
+            response_from_veriff: {
+                id: req.body.id,
+                feature: req.body.feature,
+                code: req.body.code,
+                action: req.body.action
             }
         });
     }
@@ -79,7 +82,7 @@ app.post('/test/notification', (req, res) => {
     } else {
         res.status(200).json({
             status_code: 200,
-            data: {
+            response_from_veriff: {
                 verificationId: req.body.verification.id,
                 verificationStatus: req.body.verification.status,
                 reason: req.body.verification.reason,
