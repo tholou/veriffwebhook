@@ -3,12 +3,15 @@ const crypto = require('crypto');
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const nodemailer = require('nodemailer');
 dotenv.config();
 const app = express().use(bodyParser.json()); // creates http server
 
 // Globals
 const VERIFF_API_TOKEN = process.env.VERIFF_API_TOKEN;
 const VERIFF_API_SECRET = process.env.VERIFF_API_SECRET;
+const EMAIL_USERNAME = process.env.EMAIL_USERNAME;
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 
 if (!VERIFF_API_TOKEN) throw('VERIFF_API_TOKEN environment variable is required');
 if (!VERIFF_API_SECRET) throw('VERIFF_API_SECRET environment variable is required');
@@ -37,6 +40,44 @@ function isSignatureValid(data) {
     hash.update(new Buffer.from(secret));
     const digest = hash.digest('hex');
     return digest === signature.toLowerCase();
+}
+
+function sendEmail(verifiationID, verificationStatus, reason) {
+    // Create the transporter with the required configuration for Outlook
+    // change the user and pass !
+    let transporter = nodemailer.createTransport({
+        host: "smtp-mail.outlook.com", // hostname
+        secureConnection: false, // TLS requires secureConnection to be false
+        port: 587, // port for secure SMTP
+        tls: {
+            ciphers:'SSLv3'
+        },
+        auth: {
+            user: EMAIL_USERNAME,
+            pass: EMAIL_PASSWORD
+        }
+    });
+
+    // setup e-mail data, even with unicode symbols
+    let mailOptions = {
+        from: '"Veriff WebHook " <tholou4reel@outlook.com>', // sender address (who sends)
+        to: 'tholou4reel@outlook.com', // list of receivers (who receives)
+        subject: 'Veriff: New Notification ', // Subject line
+        html: '<b>Hello world </b><br> ' +
+        '<p><b>Verification ID: </b>' + verifiationID + '</p><br>' +
+        '<p><b>Verification Status: </b>' + verificationStatus + '</p><br>' +
+        '<p><b>Verification Reason: </b>' + reason + '</p>'
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            return console.log(error);
+        }
+
+        console.log('Message sent: ' + info.response);
+    });
+
 }
 
 app.post('/test/hook', (req, res) => {
@@ -80,6 +121,7 @@ app.post('/test/notification', (req, res) => {
             message: 'Unauthorized'
         });
     } else {
+        sendEmail(req.body.verification.id, req.body.verification.status, req.body.verification.reason);
         res.status(200).json({
             status_code: 200,
             response_from_veriff: {
