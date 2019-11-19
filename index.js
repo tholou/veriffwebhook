@@ -63,10 +63,10 @@ function sendEmail(verifiationID, verificationStatus, reason) {
         from: '"Veriff WebHook " <tholou4reel@outlook.com>', // sender address (who sends)
         to: 'tholou4reel@outlook.com', // list of receivers (who receives)
         subject: 'Veriff: New Notification ', // Subject line
-        html: '<b>Hello world </b><br> ' +
-        '<p><b>Verification ID: </b>' + verifiationID + '</p><br>' +
-        '<p><b>Verification Status: </b>' + verificationStatus + '</p><br>' +
-        '<p><b>Verification Reason: </b>' + reason + '</p>'
+        html: '<b>Hello!</b><br> ' +
+        '<p><b>Verification ID: </b>' + verifiationID + '</p>>' +
+        '<p><b>Verification Status: </b>' + verificationStatus + '</p>' +
+        '<p><b>Verification Reason: </b>' + reason
     };
 
     // send mail with defined transport object
