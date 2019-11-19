@@ -64,7 +64,7 @@ function sendEmail(verifiationID, verificationStatus, reason) {
         to: 'tholou4reel@outlook.com', // list of receivers (who receives)
         subject: 'Veriff: New Notification ', // Subject line
         html: '<b>Hello!</b><br> ' +
-        '<p><b>Verification ID: </b>' + verifiationID + '</p>>' +
+        '<p><b>Verification ID: </b>' + verifiationID + '</p>' +
         '<p><b>Verification Status: </b>' + verificationStatus + '</p>' +
         '<p><b>Verification Reason: </b>' + reason
     };
