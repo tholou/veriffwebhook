@@ -59,9 +59,7 @@ function sendEmail(verifiationID, verificationStatus, reason) {
     });
 
     if (reason == null) {
-        reason = '';
-    } else {
-        reason = 'ID was valid'
+        reason = 'ID was valid';
     }
 
     // setup e-mail data, even with unicode symbols
