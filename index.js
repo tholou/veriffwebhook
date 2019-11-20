@@ -62,7 +62,7 @@ function sendEmail(verifiationID, verificationStatus, reason) {
     let mailOptions = {
         from: '"Veriff WebHook " <tholou4reel@outlook.com>', // sender address (who sends)
         to: 'tholou4reel@outlook.com', // list of receivers (who receives)
-        subject: 'Veriff: New Notification ', // Subject line
+        subject: 'Veriff: New Notification Received', // Subject line
         html: '<b>Hello!</b><br> ' +
         '<p><b>Verification ID: </b>' + verifiationID + '</p>' +
         '<p><b>Verification Status: </b>' + verificationStatus + '</p>' +
