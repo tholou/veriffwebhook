@@ -58,6 +58,10 @@ function sendEmail(verifiationID, verificationStatus, reason) {
         }
     });
 
+    if (reason == null) {
+        reason = '';
+    }
+
     // setup e-mail data, even with unicode symbols
     let mailOptions = {
         from: '"Veriff WebHook " <tholou4reel@outlook.com>', // sender address (who sends)
@@ -65,7 +69,7 @@ function sendEmail(verifiationID, verificationStatus, reason) {
         subject: 'Veriff: New Notification Received', // Subject line
         html: '<b>Hello!</b><br> ' +
         '<p><b>Verification ID: </b>' + verifiationID + '</p>' +
-        '<p><b>Verification Status: </b>' + verificationStatus + '</p>' +
+        '<p><b>Verification Status: </b>' + verificationStatus.charAt(0).toUpperCase() + verificationStatus.substring(1) + '</p>' +
         '<p><b>Verification Reason: </b>' + reason
     };
 
